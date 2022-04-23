@@ -1,0 +1,7 @@
+{
+  "name": "consulta-preco",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
