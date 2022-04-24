@@ -13,6 +13,9 @@ export class ConsutaFormPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  readBarcode(){
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
      }).catch(err => {
