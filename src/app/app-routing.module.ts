@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'consuta-form',
+    loadChildren: () => import('./consuta-form/consuta-form.module').then( m => m.ConsutaFormPageModule)
   }
 ];
 @NgModule({

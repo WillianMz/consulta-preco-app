@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        loadChildren: () => import('../consuta-form/consuta-form.module').then(m => m.ConsutaFormPageModule)
       },
       {
         path: 'tab2',
