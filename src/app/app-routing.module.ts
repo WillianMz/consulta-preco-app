@@ -9,7 +9,11 @@ const routes: Routes = [
   {
     path: 'consuta-form',
     loadChildren: () => import('./consuta-form/consuta-form.module').then( m => m.ConsutaFormPageModule)
+  },  {
+    path: 'produto-list',
+    loadChildren: () => import('./produto-list/produto-list.module').then( m => m.ProdutoListPageModule)
   }
+
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "consulta-preco",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
