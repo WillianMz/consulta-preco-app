@@ -6,9 +6,17 @@
 
 <ion-content>
 
-  <ion-card>
+  <ion-searchbar placeholder="Insira o código de barras"
+    (ionChange)="doSearchBarChange($event)"
+    animated
+    inputmode="numeric"
+    type="tel">
+  </ion-searchbar>
+
+  <ion-card color="danger">
     <ion-card-content>
-      <ion-label color="danger">Aplicativo em Teste</ion-label>
+      <ion-label></ion-label>
+      <ion-text>APLICATIVO VERSÃO BETA</ion-text>
     </ion-card-content>
   </ion-card>
 
@@ -17,7 +25,7 @@
     <ion-card-header>
       <ion-card-title>
         <ion-text color="dark">
-          BEB.ENERG.MONSTER DRAGON ICE 473ML
+          {{produto.nome}}
         </ion-text>
       </ion-card-title>
     </ion-card-header>
@@ -27,48 +35,25 @@
       <ion-list lines="">
         <ion-item color="tertiary">
           <h2>
-            <ion-text>Cód.Barras: 070847034803</ion-text>
+            <ion-text>Cód.Barras: {{produto.codbarras}}</ion-text>
           </h2>
         </ion-item>
 
         <ion-item color="warning"> 
           <h2>
-            <ion-text>Código: 99999</ion-text>
+            <ion-text>Código: {{produto.id}}</ion-text>
           </h2>
         </ion-item>
 
         <ion-item color="success">          
           <h1>
-            <ion-text>Preço Venda: R$ 5,59</ion-text>
+            <ion-text>Preço Venda: R$ {{produto.precoVenda}}</ion-text>
           </h1>         
         </ion-item>
       </ion-list>
 
     </ion-card-content>
   </ion-card>
-
-  <!-- <ion-list lines="">
-
-    <ion-item button="">
-      <ion-label>
-        <h2>
-          <p>
-            BEB.ENERG.MONSTER DRAGON ICE 473ML
-          </p>
-        </h2>
-        <ion-label>
-          <h3>Cód.Barras: 070847034803</h3>
-          <h3>Código: 45724</h3>
-        </ion-label>
-      </ion-label>
-
-      <ion-label slot="end">
-        <ion-note slot="end" color="tertiary">R$ 5,59</ion-note>
-      </ion-label>
-    </ion-item>
-
-  </ion-list> -->
-
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="readBarcode()">
