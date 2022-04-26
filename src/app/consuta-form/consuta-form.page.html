@@ -5,7 +5,7 @@
 
       <ion-img src="../../assets/icon/icone32.png"></ion-img>
 
-      <ion-title>Consulta Preço</ion-title>
+      <ion-title>Consultar Preço</ion-title>
     </ion-item>
 
   </ion-toolbar>
@@ -81,7 +81,7 @@
           </h1>
         </ion-item>
 
-        <ion-button color="medium" expand="block">
+        <ion-button color="medium" expand="block" (click)="solicitarEtiqueta()">
           Solicitar Etiqueta
         </ion-button>
 
@@ -95,7 +95,7 @@
   <div class="centro" *ngIf="marcaVisivel">
     <ion-label>
       <ion-text color="primary">
-        <h1>&copy; WN ConsultaPreço</h1>
+        <h1>&copy; consultapreço</h1>
       </ion-text>
     </ion-label>
   </div>

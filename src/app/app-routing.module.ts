@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'etiqueta-list',
     loadChildren: () => import('./etiqueta-list/etiqueta-list.module').then( m => m.EtiquetaListPageModule)
+  },
+  {
+    path: 'sobre',
+    loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
   }
 
 ];

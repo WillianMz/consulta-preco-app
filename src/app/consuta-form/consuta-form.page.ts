@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { ToastController } from '@ionic/angular';
@@ -21,19 +22,22 @@ export class ConsutaFormPage implements OnInit {
   visivel: boolean;
   marcaVisivel: boolean;
   barcode: string;
+  databaseName: string;
 
   constructor(
     private barcodeScanner: BarcodeScanner,
     private produtoService: ProdutoService,
     private sqlite: SQLite,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private router: Router
   ) {
+    this.databaseName = 'preco_produto.db';
     this.marcaVisivel = true;
    }
 
   ngOnInit() {
     this.produto = new Produto();
-    this.populateTable();
+    //this.populateTable();
   }
 
   async produtoNaoEncontrado() {
@@ -78,33 +82,33 @@ export class ConsutaFormPage implements OnInit {
 
   populateTable(){
     this.sqlite.create({
-      name: 'preco_produto.db',
+      name: this.databaseName,
       location: 'default'
     }).then((db: SQLiteObject) => {
       // eslint-disable-next-line max-len
       db.executeSql('CREATE TABLE IF NOT EXISTS produto(id INTEGER PRIMARY KEY, codbarras VARCHAR(13), nome VARCHAR(40), preco_venda VARCHAR(10))', [])
       .then(res =>  this.exibirMensagem('Banco de dados OK','success'))
       .catch(e => this.exibirMensagem('Erro ao criar tabelas','danger'));
-      /* db.executeSql('SELECT * FROM produto ORDER BY nome', [])
-      .then(res => {
-        if(res.rows.length === 0 ){
-          db.executeSql('INSERT INTO produto VALUES (?,?,?,?)', [1,'789160623090','MARCA-TEXTO GRIFPEN','2,99']);
-          db.executeSql('INSERT INTO produto VALUES (?,?,?,?)', [2,'7896572000547','CANETA ESF.COMPACTOR','3,99']);
-          db.executeSql('INSERT INTO produto VALUES (?,?,?,?)', [3,'7891360498506','CANETA FINEPEN FABER','4,99']);
-          db.executeSql('INSERT INTO produto VALUES (?,?,?,?)', [4,'7897476666471','CANETA ESF.PRETA','5,99']);
-        }
-      }).catch(e => alert('ERRO DE INSERT: ' + e)); */
     }).catch(ex => this.exibirMensagem('Erro','danger'));
   }
 
   clickBusca(){
     this.getProduto(this.barcode);
+    /* this.visivel = true;
+    this.produto.codbarras = '789456123456';
+    this.produto.nome = 'PRODUTO TESTE';
+    this.produto.id = 123;
+    this.produto.precoVenda = '3,59'; */
+  }
+
+  solicitarEtiqueta(){
+    this.router.navigate(['/tabs/tab2'], {queryParams: {barcode: this.produto.codbarras}});
   }
 
   getProduto(barcode: string){
     console.log('get_produto');
     this.sqlite.create({
-      name: 'preco_produto.db',
+      name: this.databaseName,
       location: 'default'
     }).then((db: SQLiteObject) => {
       db.executeSql('SELECT * FROM produto WHERE codbarras = ?', [barcode])
