@@ -18,13 +18,18 @@ export class ConsutaFormPage implements OnInit {
   codbarras: string;
   codigo: number;
   precoVenda: string;
+  visivel: boolean;
+  marcaVisivel: boolean;
+  barcode: string;
 
   constructor(
     private barcodeScanner: BarcodeScanner,
     private produtoService: ProdutoService,
     private sqlite: SQLite,
     public toastController: ToastController
-  ) { }
+  ) {
+    this.marcaVisivel = true;
+   }
 
   ngOnInit() {
     this.produto = new Produto();
@@ -92,6 +97,10 @@ export class ConsutaFormPage implements OnInit {
     }).catch(ex => this.exibirMensagem('Erro','danger'));
   }
 
+  clickBusca(){
+    this.getProduto(this.barcode);
+  }
+
   getProduto(barcode: string){
     console.log('get_produto');
     this.sqlite.create({
@@ -107,8 +116,12 @@ export class ConsutaFormPage implements OnInit {
           p.nome = res.rows.item(0).nome;
           p.precoVenda = res.rows.item(0).preco_venda;
           this.produto = p;
+          this.visivel = true;
+          this.marcaVisivel = false;
         }
         else{
+          this.visivel = false;
+          this.marcaVisivel = true;
           this.produtoNaoEncontrado();
         }
       }).catch(ex1 => this.exibirMensagem('Erro','danger'));

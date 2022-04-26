@@ -12,6 +12,10 @@ const routes: Routes = [
   },  {
     path: 'produto-list',
     loadChildren: () => import('./produto-list/produto-list.module').then( m => m.ProdutoListPageModule)
+  },
+  {
+    path: 'etiqueta-list',
+    loadChildren: () => import('./etiqueta-list/etiqueta-list.module').then( m => m.EtiquetaListPageModule)
   }
 
 ];
