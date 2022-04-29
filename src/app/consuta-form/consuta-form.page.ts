@@ -118,7 +118,7 @@ export class ConsutaFormPage implements OnInit {
           p.id = res.rows.item(0).id;
           p.codbarras = res.rows.item(0).codbarras;
           p.nome = res.rows.item(0).nome;
-          p.precoVenda = res.rows.item(0).preco_venda;
+          p.preco_venda = res.rows.item(0).preco_venda;
           this.produto = p;
           this.visivel = true;
           this.marcaVisivel = false;

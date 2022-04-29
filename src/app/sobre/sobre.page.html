@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-item color="primary" lines="none">
       <ion-img src="../../assets/icon/icone32.png"></ion-img>
-      <ion-title>Sobre</ion-title>
+      <ion-title>Ajustes</ion-title>
     </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -11,10 +11,16 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Importar</ion-card-subtitle>
+      <ion-card-subtitle>Dados do Aplicativo</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      Awesome content
+      <ion-button expand="block" (click)="limparBase()">
+        Zerar banco de dados
+      </ion-button>
+
+      <ion-button expand="block" (click)="loadProdutos()">
+        Carregar produtos
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -26,10 +32,30 @@
     <ion-card-content>
       <ion-label>
         <ion-text color="dark">
-          <h3>2022 &copy; WILLIAN</h3>
+          <h2>2022 &copy; WILLIAN</h2>
+          <h3>Consulta Preço</h3>
+          <h3>Versão 1.0 BETA</h3>
         </ion-text>
       </ion-label>
     </ion-card-content>
   </ion-card>
+
+  <ion-card color="danger">
+    <ion-card-content>
+      <ion-label></ion-label>
+      <ion-text>APLICATIVO VERSÃO BETA</ion-text>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- MARCA -->
+  <br>
+  <div class="centro">
+    <ion-label>
+      <ion-text color="primary">
+        <h1>&COPY; consultapreço</h1>
+      </ion-text>
+    </ion-label>
+  </div>
 
 </ion-content>
