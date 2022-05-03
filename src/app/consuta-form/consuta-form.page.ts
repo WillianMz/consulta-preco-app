@@ -94,6 +94,7 @@ export class ConsutaFormPage implements OnInit {
 
   clickBusca(){
     this.getProduto(this.barcode);
+    //this.getByApi(this.barcode);
     /* this.visivel = true;
     this.produto.codbarras = '789456123456';
     this.produto.nome = 'PRODUTO TESTE';
@@ -103,6 +104,21 @@ export class ConsutaFormPage implements OnInit {
 
   solicitarEtiqueta(){
     this.router.navigate(['/tabs/tab2'], {queryParams: {barcode: this.produto.codbarras}});
+  }
+
+  getByApi(barcode: string){
+    this.produtoService.getProduto(barcode).subscribe(
+      (response) => {
+        const p = new Produto();
+        p.id = response.id;
+        p.codbarras = response.codbarras;
+        p.nome = response.nome;
+        p.preco_venda = response.preco_venda;
+        this.produto = p;
+        this.visivel = true;
+        this.marcaVisivel = false;
+      }
+    );
   }
 
   getProduto(barcode: string){

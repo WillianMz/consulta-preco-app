@@ -26,21 +26,18 @@ export class SobrePage implements OnInit {
     this.loadFileJson('../../assets/produtos.json');
   }
 
-  loadFileJson(path: string){
+  async loadFileJson(path: string){
     this.http.get<Produto[]>(path).subscribe(
       response => {
         this.produtos = response;
-        //console.log(this.produtos);
       }
     );
 
     if(this.produtos.length > 0) {
       this.produtos.forEach(p => {
-        this.prodService.insertProduto(p.id, p.codbarras, p.nome, p.preco_venda);
-        //console.log(p.preco_venda);
+      this.prodService.insertProduto(p.id, p.codbarras, p.nome, p.preco_venda);
       });
     }
-
   }
 
   clearBase(){
