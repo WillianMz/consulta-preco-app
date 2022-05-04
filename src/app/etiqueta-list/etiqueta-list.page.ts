@@ -1,3 +1,4 @@
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { Etiqueta } from './../models/etiqueta';
 import { ProdutoService } from './../services/produto.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -25,7 +26,8 @@ export class EtiquetaListPage implements OnInit {
     private router: Router,
     private actRoute: ActivatedRoute,
     public alertController: AlertController,
-    private barcodeScanner: BarcodeScanner
+    private barcodeScanner: BarcodeScanner,
+    private socialSharing: SocialSharing
   ) {
     this.databaseName = 'preco_produto.db';
     const p = {qtd: 1, codbarras:'', produtoNome:''};
@@ -50,6 +52,24 @@ export class EtiquetaListPage implements OnInit {
 
   ionViewWillEnter(){
     this.listar();
+  }
+
+  exportWhats(){
+    this.socialSharing.shareViaWhatsApp('CONSULTAPRECO APP').then(() => {
+      alert('OK');
+    }).catch((e) => alert(e));
+  }
+
+  exportTeleg(){
+    this.socialSharing.shareVia('telegram','CONSULTAPRECO APP').then(() => {
+      alert('OK');
+    }).catch((e) => alert(e));
+  }
+
+  exportEmail(){
+    this.socialSharing.shareViaEmail('CONSULTAPRECO APP','',[]).then(() => {
+      alert('OK');
+    }).catch((e) => alert(e));
   }
 
   async exibirMensagem(mensagem: string, cor: string) {

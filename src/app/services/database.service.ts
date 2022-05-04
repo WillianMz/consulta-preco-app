@@ -15,7 +15,7 @@ export class DatabaseService {
     private sqlite: SQLite,
     private sqlPort: SQLitePorter
   ) {
-    this.create();
+    //this.create();
   }
 
   //criar banco de dados

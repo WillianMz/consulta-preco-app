@@ -2,10 +2,7 @@
   <ion-toolbar color="primary">
 
     <ion-item color="primary" lines="none">
-
-      <ion-img src="../../assets/icon/icone32.png"></ion-img>
-
-      <ion-title>Etiquetas</ion-title>
+      <ion-title>CONSULTA PRECO</ion-title>
     </ion-item>
 
   </ion-toolbar>
@@ -87,5 +84,30 @@
   <ion-button (click)="limparLista()" expand="block" fill="clear" shape="round">
     Limpar lista
   </ion-button>
+
+  <!-- BOTOES DE COMPARTILHAMENTO -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <!-- EMAIL -->
+      <ion-fab-button color="primary" (click)="exportEmail()">
+        <ion-icon name="mail-outline"></ion-icon>
+      </ion-fab-button>
+
+      <!-- TELEGRAM -->
+      <ion-fab-button color="primary" (click)="exportTeleg()">
+        <ion-icon name="send-outline"></ion-icon>
+      </ion-fab-button>
+
+      <!-- WHATSAPP -->
+      <ion-fab-button color="primary" (click)="exportWhats()">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </ion-fab-button>
+
+    </ion-fab-list>
+  </ion-fab>
 
 </ion-content>
