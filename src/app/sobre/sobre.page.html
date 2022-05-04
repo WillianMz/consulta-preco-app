@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-item color="primary" lines="none">
-      <ion-img src="../../assets/icon/icone32.png"></ion-img>
-      <ion-title>Ajustes</ion-title>
+      <!-- <ion-img src="../../assets/icon/icone32.png"></ion-img> -->
+      <ion-title>ConsultaPreço</ion-title>
     </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -21,6 +21,11 @@
       <ion-button expand="block" (click)="loadProdutos()">
         Carregar produtos
       </ion-button>
+
+      <input type="file" class="file-upload" id="input"
+        (change)="onFileSelected($event)"
+        onchange="console.log(event.target.files)">
+
     </ion-card-content>
   </ion-card>
 
@@ -53,7 +58,7 @@
   <div class="centro">
     <ion-label>
       <ion-text color="primary">
-        <h1>&COPY; consultapreço</h1>
+        <h1>consultapreço</h1>
       </ion-text>
     </ion-label>
   </div>

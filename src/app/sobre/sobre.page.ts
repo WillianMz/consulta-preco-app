@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produto } from '../models/produto';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-sobre',
   templateUrl: './sobre.page.html',
@@ -12,6 +13,10 @@ import { AlertController } from '@ionic/angular';
 export class SobrePage implements OnInit {
 
   produtos: Produto[] = [];
+  fileUpload: any;
+  fileName: any;
+
+  fileToUpload: File | null = null;
 
   constructor(
     private http: HttpClient,
@@ -22,11 +27,33 @@ export class SobrePage implements OnInit {
   ngOnInit() {
   }
 
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+      const formData = new FormData();
+      formData.append('thumbnail', file);
+      this.http.post(`../../assets/${this.fileName}`, formData);
+      //const upload$ = this.http.post(`../../assets/${this.fileName}`, formData);
+      //upload$.subscribe();
+
+      console.log(this.fileName);
+      console.log(formData);
+      //console.log(upload$);
+    }
+}
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
+
   loadProdutos(){
     this.loadFileJson('../../assets/produtos.json');
   }
 
   async loadFileJson(path: string){
+
     this.http.get<Produto[]>(path).subscribe(
       response => {
         this.produtos = response;
