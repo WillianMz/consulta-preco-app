@@ -1,8 +1,9 @@
+import { DatabaseService } from './../services/database.service';
 import { ProdutoService } from './../services/produto.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../models/produto';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 
 
 @Component({
@@ -24,13 +25,14 @@ export class SobrePage implements OnInit {
   constructor(
     private http: HttpClient,
     private prodService: ProdutoService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private db: DatabaseService
   ) { }
 
   ngOnInit() {
   }
 
-  public uploadFile(files: FileList): void{
+  public uploadFile(files: FileList){
     if(files && files.length > 0){
       const file: File = files.item(0);
       //console.log('upload file: ' + 'nome: ' + file.name + 'tamanho: ' + file.size + 'tipo: ' + file.type);
@@ -76,10 +78,10 @@ export class SobrePage implements OnInit {
 }
 
   loadProdutos(){
-    this.loadFileJson('../../assets/produtos.json');
+    this.loadFileJson();
   }
 
-  async loadFileJson(path: string){
+  async loadFileJson(){
     /* this.http.get<Produto[]>(path).subscribe(
       response => {
         this.produtos = response;
@@ -94,6 +96,10 @@ export class SobrePage implements OnInit {
     } */
 
     console.log(this.json);
+
+    this.db.importJSON(this.json).then((res) => {
+      alert('OK');
+    }).catch((e) => alert(e));
   }
 
   clearBase(){

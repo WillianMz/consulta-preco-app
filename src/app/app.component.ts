@@ -1,3 +1,5 @@
+import { DatabaseService } from './services/database.service';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ProdutoService } from './services/produto.service';
@@ -10,7 +12,9 @@ import { ProdutoService } from './services/produto.service';
 export class AppComponent {
   constructor(
     private plataform: Platform,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private http: HttpClient,
+    private db: DatabaseService
   ) {
     this.startApp();
   }
@@ -20,4 +24,13 @@ export class AppComponent {
       this.produtoService.createDatabase();
     });
   }
+
+  /* ionViewDidLoad(){
+    this.plataform.ready()
+      .then(() => {
+        setTimeout(() => {
+          alert('WN SOFTWARE');
+        }, 1500);
+      });
+  } */
 }

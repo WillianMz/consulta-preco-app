@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 //plugins
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import { SQLitePorter } from '@awesome-cordova-plugins/sqlite-porter/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
   providers: [
     BarcodeScanner,
     SQLite,
+    SQLitePorter,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
