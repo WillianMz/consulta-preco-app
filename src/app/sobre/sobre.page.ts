@@ -17,18 +17,44 @@ export class SobrePage implements OnInit {
   fileName: any;
 
   fileToUpload: File | null = null;
+  reader  = new FileReader();
+
+  json: string;
 
   constructor(
     private http: HttpClient,
     private prodService: ProdutoService,
-    public alertController: AlertController
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
   }
 
+  public uploadFile(files: FileList): void{
+    if(files && files.length > 0){
+      const file: File = files.item(0);
+      //console.log('upload file: ' + 'nome: ' + file.name + 'tamanho: ' + file.size + 'tipo: ' + file.type);
+      const reader: FileReader = new FileReader();
+      reader.readAsText(file);
+      console.log(file);
+      reader.onload = (e) => {
+        const fileContent: string = reader.result as string;
+        //console.log('fileContent: ' + fileContent);
+        this.json = fileContent;
+        console.log(this.json);
+        //const lines: string[] = fileContent.split('\n');
+        //console.log(lines);
+        /* alert(fileContent);
+        console.log(e); */
+      };
+    }
+  }
+
   onFileSelected(event) {
-    const file: File = event.target.files[0];
+    /* const file: File = event.target.files[0];
+
+    this.reader.readAsDataURL(file);
+    console.log(this.reader);
 
     if (file) {
       this.fileName = file.name;
@@ -41,8 +67,9 @@ export class SobrePage implements OnInit {
       console.log(this.fileName);
       console.log(formData);
       //console.log(upload$);
-    }
-}
+    } */
+  }
+
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
@@ -53,10 +80,10 @@ export class SobrePage implements OnInit {
   }
 
   async loadFileJson(path: string){
-
-    this.http.get<Produto[]>(path).subscribe(
+    /* this.http.get<Produto[]>(path).subscribe(
       response => {
         this.produtos = response;
+        console.log(this.produtos);
       }
     );
 
@@ -64,7 +91,9 @@ export class SobrePage implements OnInit {
       this.produtos.forEach(p => {
       this.prodService.insertProduto(p.id, p.codbarras, p.nome, p.preco_venda);
       });
-    }
+    } */
+
+    console.log(this.json);
   }
 
   clearBase(){

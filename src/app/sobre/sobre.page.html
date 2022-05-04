@@ -8,7 +8,6 @@
 </ion-header>
 
 <ion-content>
-
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Dados do Aplicativo</ion-card-subtitle>
@@ -22,10 +21,19 @@
         Carregar produtos
       </ion-button>
 
-      <input type="file" class="file-upload" id="input"
+      <!-- <input
+        type="file"
+        class="file-upload"
+        id="input"
         (change)="onFileSelected($event)"
-        onchange="console.log(event.target.files)">
+        onchange="console.log(event.target.files)"
+      /> -->
+    </ion-card-content>
+  </ion-card>
 
+  <ion-card>
+    <ion-card-content>
+      <input type="file" (change)="uploadFile($event.target.files)">
     </ion-card-content>
   </ion-card>
 
@@ -52,9 +60,8 @@
     </ion-card-content>
   </ion-card>
 
-
   <!-- MARCA -->
-  <br>
+  <br />
   <div class="centro">
     <ion-label>
       <ion-text color="primary">
@@ -62,5 +69,4 @@
       </ion-text>
     </ion-label>
   </div>
-
 </ion-content>
