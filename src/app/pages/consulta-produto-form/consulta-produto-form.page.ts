@@ -26,6 +26,7 @@ export class ConsultaProdutoFormPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.marcaVisivel = true;
   }
 
   solicitarEtiqueta(){

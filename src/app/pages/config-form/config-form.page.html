@@ -1,69 +1,89 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <!-- <ion-toolbar color="primary">
     <ion-item color="primary" lines="none">
       <ion-title>CONSULTA PRECO</ion-title>
     </ion-item>
-  </ion-toolbar>
+  </ion-toolbar> -->
+  <app-toolbar></app-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- importacao de dados -->
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Dados do Aplicativo</ion-card-subtitle>
+      <!-- <ion-card-subtitle>Configurações</ion-card-subtitle> -->
+      <ion-card-title>Importar Dados</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <input type="file" (change)="uploadFile($event.target.files)">
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" (click)="loadFileJson()" disabled="true">
+        Iniciar importação
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- exportacao de dados -->
+  <ion-card *ngIf="false">
+    <ion-card-header>
+      <ion-card-title>Exportar Dados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>Em Desenvolvimento</ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Configurações</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-button expand="block" (click)="limparBancoDeDados()">
         Zerar banco de dados
       </ion-button>
-
       <ion-button expand="block" (click)="limparTabelas()">
         Limpar tabelas
       </ion-button>
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-    <ion-card-content>
-
-      <input type="file" (change)="uploadFile($event.target.files)">
-
-      <ion-button expand="block" (click)="loadFileJson()">
-        Iniciar importação
-      </ion-button>
-
-    </ion-card-content>
-  </ion-card>
-
   <!-- SOBRE -->
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Sobre</ion-card-subtitle>
+      <ion-card-title>Sobre</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+
+      <ion-card color="danger">
+        <ion-card-content>
+          <ion-label></ion-label>
+          <ion-text>APLICATIVO VERSÃO BETA</ion-text>
+        </ion-card-content>
+      </ion-card>
+
       <ion-label>
         <ion-text color="dark">
-          <h2>2022 &copy; WILLIAN</h2>
           <h3>Consulta Preço</h3>
           <h3>Versão 1.0 BETA</h3>
+          <h2>WILLIAN 2022</h2>
         </ion-text>
       </ion-label>
     </ion-card-content>
-  </ion-card>
-
-  <ion-card color="danger">
-    <ion-card-content>
-      <ion-label></ion-label>
-      <ion-text>APLICATIVO VERSÃO BETA</ion-text>
-    </ion-card-content>
-  </ion-card>
+  </ion-card> -->
+  <app-sobre></app-sobre>
 
   <!-- MARCA -->
   <br />
   <div class="centro">
-    <ion-label>
+    <!-- <ion-label>
       <ion-text color="primary">
         <h1>consultapreço</h1>
       </ion-text>
-    </ion-label>
+    </ion-label> -->
+    <app-marca></app-marca>
   </div>
 </ion-content>

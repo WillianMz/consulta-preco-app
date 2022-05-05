@@ -22,7 +22,7 @@ export class AppComponent {
   startApp(){
     this.plataform.ready().then(() => {
       this.produtoService.createDatabase();
-      this.db.create();
+      this.db.createDatabase();
     });
   }
 

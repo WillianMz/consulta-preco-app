@@ -6,7 +6,26 @@ import { TabsPagePage } from './tabs-page.page';
 const routes: Routes = [
   {
     path: '',
-    component: TabsPagePage
+    component: TabsPagePage,
+    children: [
+      {
+        path:'consulta',
+        loadChildren: () => import('../consulta-produto-form/consulta-produto-form.module').then(m => m.ConsultaProdutoFormPageModule)
+      },
+      {
+        path: 'etiqueta',
+        loadChildren: () => import('../etiqueta-preco-form/etiqueta-preco-form.module').then(m => m.EtiquetaPrecoFormPageModule)
+      },
+      {
+        path: 'config',
+        loadChildren: () => import('../config-form/config-form.module').then(m => m.ConfigFormPageModule)
+      },
+      {
+        path: '',
+        redirectTo: 'consulta',
+        pathMatch: 'full'
+      }
+    ]
   }
 ];
 
