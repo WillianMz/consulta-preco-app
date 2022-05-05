@@ -64,7 +64,7 @@
 
     <ion-list-header>
       <ion-label>Produtos</ion-label>
-      <ion-button>Exportar</ion-button>
+      <ion-button (click)="gerarListaExport()">Exportar</ion-button>
     </ion-list-header>
 
     <ion-item-sliding *ngFor="let e of etiquetas">

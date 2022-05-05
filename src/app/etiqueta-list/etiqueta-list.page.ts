@@ -18,6 +18,7 @@ export class EtiquetaListPage implements OnInit {
   etiquetas: Etiqueta[] = [];
   etiqForm: FormGroup;
   databaseName: string;
+  solicitacao: string;
 
   constructor(
     private produtoService: ProdutoService,
@@ -55,21 +56,62 @@ export class EtiquetaListPage implements OnInit {
   }
 
   exportWhats(){
-    this.socialSharing.shareViaWhatsApp('CONSULTAPRECO APP').then(() => {
+    this.gerarListaExport();
+
+    this.socialSharing.shareViaWhatsApp(this.solicitacao).then(() => {
       alert('OK');
     }).catch((e) => alert(e));
   }
 
   exportTeleg(){
-    this.socialSharing.shareVia('telegram','CONSULTAPRECO APP').then(() => {
+    this.gerarListaExport();
+
+    this.socialSharing.shareVia('telegram',this.solicitacao).then(() => {
       alert('OK');
     }).catch((e) => alert(e));
   }
 
   exportEmail(){
-    this.socialSharing.shareViaEmail('CONSULTAPRECO APP','',[]).then(() => {
+    this.gerarListaExport();
+
+    this.socialSharing.shareViaEmail(this.solicitacao,'Solicitação de Etiquetas', null).then(() => {
       alert('OK');
     }).catch((e) => alert(e));
+  }
+
+  gerarListaExport(){
+    /* let a = 'SOLICITAÇÃO DE ETIQUETAS\n';
+    a += '1 x 789123456789 - PRODUTO DE TESTE\n';
+    a += '1 x 789123456789 - PRODUTO DE TESTE\n';
+    a += '1 x 789123456789 - PRODUTO DE TESTE\n'; */
+    /* let s = '1 x 789456134561\n';
+    s += 'NOME DO PRODUTO TESTE DESCRICAO\n';
+    s += '--------------------------------';
+    s += '1 x 789456134561\n';
+    s += 'NOME DO PRODUTO TESTE DESCRICAO\n';
+    s += '--------------------------------';
+    s += '1 x 789456134561\n';
+    s += 'NOME DO PRODUTO TESTE DESCRICAO\n';
+    s += '--------------------------------';
+    s += '1 x 789456134561\n';
+    s += 'NOME DO PRODUTO TESTE DESCRICAO\n'; */
+
+    this.solicitacao = 'TABELA DE PREÇOS\n\n';
+
+    /* this.etiquetas.forEach(p => {
+      this.solicitacao += `${p.qtd} X ${p.codbarras} - ${p.produtoNome}\n`;
+    }); */
+
+    this.etiquetas.forEach(p => {
+      this.solicitacao += `${p.qtd} x ${p.codbarras}\n`;
+      this.solicitacao += `${p.produtoNome}\n`;
+      this.solicitacao += '-----------------------------\n';
+    });
+
+    this.solicitacao += '\n @consultapreco';
+    /* this.socialSharing.shareVia('telegram',this.solicitacao).then(() => {
+      alert('Compartilhamento Finalizado');
+    }).catch((e) => alert(e)); */
   }
 
   async exibirMensagem(mensagem: string, cor: string) {
