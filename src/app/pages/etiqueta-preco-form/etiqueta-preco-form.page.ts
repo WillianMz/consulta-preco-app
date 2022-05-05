@@ -77,7 +77,7 @@ export class EtiquetaPrecoFormPage implements OnInit {
 
     this.socialSharing.shareViaWhatsApp(this.solicitacao)
     .then(() => {
-      //executar algo
+      this.limparLista();
     }).catch((e) => alert(e));
   }
 
@@ -86,7 +86,7 @@ export class EtiquetaPrecoFormPage implements OnInit {
 
     this.socialSharing.shareVia('telegram',this.solicitacao)
     .then(() => {
-      //executar algo
+      this.limparLista();
     }).catch((e) => alert(e));
   }
 
@@ -95,7 +95,7 @@ export class EtiquetaPrecoFormPage implements OnInit {
 
     this.socialSharing.shareViaEmail(this.solicitacao,'Solicitação de Etiquetas', null)
     .then(() => {
-      //executar algo
+      this.limparLista();
     }).catch((e) => alert(e));
   }
 
@@ -122,6 +122,7 @@ export class EtiquetaPrecoFormPage implements OnInit {
           id: 'confirm-button',
           handler: () => {
             this.db.deleteEtiquetas();
+            this.listar();
           }
         }
       ]
@@ -158,6 +159,7 @@ export class EtiquetaPrecoFormPage implements OnInit {
   }
 
   private listar(){
+    this.etiquetas = [];
     this.db.getAllEtiquetas()
       .then(res => {
         if(res.rows.length > 0) {

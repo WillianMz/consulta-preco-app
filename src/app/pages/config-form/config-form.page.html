@@ -1,9 +1,4 @@
 <ion-header>
-  <!-- <ion-toolbar color="primary">
-    <ion-item color="primary" lines="none">
-      <ion-title>CONSULTA PRECO</ion-title>
-    </ion-item>
-  </ion-toolbar> -->
   <app-toolbar></app-toolbar>
 </ion-header>
 
@@ -11,7 +6,6 @@
   <!-- importacao de dados -->
   <ion-card>
     <ion-card-header>
-      <!-- <ion-card-subtitle>Configurações</ion-card-subtitle> -->
       <ion-card-title>Importar Dados</ion-card-title>
     </ion-card-header>
 
@@ -21,7 +15,7 @@
           <input type="file" (change)="uploadFile($event.target.files)">
         </ion-item>
       </ion-list>
-      <ion-button expand="block" (click)="loadFileJson()" disabled="true">
+      <ion-button expand="block" (click)="loadFileJson()">
         Iniciar importação
       </ion-button>
     </ion-card-content>
@@ -52,38 +46,11 @@
   </ion-card>
 
   <!-- SOBRE -->
-  <!-- <ion-card>
-    <ion-card-header>
-      <ion-card-title>Sobre</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-
-      <ion-card color="danger">
-        <ion-card-content>
-          <ion-label></ion-label>
-          <ion-text>APLICATIVO VERSÃO BETA</ion-text>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-label>
-        <ion-text color="dark">
-          <h3>Consulta Preço</h3>
-          <h3>Versão 1.0 BETA</h3>
-          <h2>WILLIAN 2022</h2>
-        </ion-text>
-      </ion-label>
-    </ion-card-content>
-  </ion-card> -->
   <app-sobre></app-sobre>
 
   <!-- MARCA -->
   <br />
   <div class="centro">
-    <!-- <ion-label>
-      <ion-text color="primary">
-        <h1>consultapreço</h1>
-      </ion-text>
-    </ion-label> -->
     <app-marca></app-marca>
   </div>
 </ion-content>

@@ -21,8 +21,8 @@ export class AppComponent {
 
   startApp(){
     this.plataform.ready().then(() => {
-      this.produtoService.createDatabase();
-      this.db.createDatabase();
+      //this.produtoService.createDatabase();
+      //this.db.createDatabase();
     });
   }
 

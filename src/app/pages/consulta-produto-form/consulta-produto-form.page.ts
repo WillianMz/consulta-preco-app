@@ -30,7 +30,7 @@ export class ConsultaProdutoFormPage implements OnInit {
   }
 
   solicitarEtiqueta(){
-    this.router.navigate(['/tabs/tab2'], {queryParams: {barcode: this.produto.codbarras}});
+    this.router.navigate(['/tabs/etiqueta'], {queryParams: {barcode: this.produto.codbarras}});
   }
 
   clickBusca(){

@@ -19,7 +19,8 @@ export class DatabaseService {
     private sqlPort: SQLitePorter,
     public toastController: ToastController
   ) {
-    //this.create();
+    this.createDatabase();
+    //this.createTables();
   }
 
   //criar banco de dados
@@ -29,6 +30,12 @@ export class DatabaseService {
       location: 'default'
     }).then((dbObject: SQLiteObject) => {
       this.db = dbObject;
+      // eslint-disable-next-line max-len
+      this.db.executeSql('CREATE TABLE IF NOT EXISTS produto(id INTEGER PRIMARY KEY, codbarras VARCHAR(13), nome VARCHAR(40), preco_venda VARCHAR(10))', [])
+        .catch(e => this.exibirMensagem(`Erro ao criar tabelas. ${e}`,'danger'));
+      // eslint-disable-next-line max-len
+      this.db.executeSql('CREATE TABLE IF NOT EXISTS etiqueta(codbarras VARCHAR(13), qtd INTEGER,	CONSTRAINT fk_codbarras FOREIGN KEY(codbarras) REFERENCES produto(codbarras))', [])
+        .catch(er => this.exibirMensagem(`Erro ao criar tabela etiqueta. ${er}`, 'danger'));
     }).catch((e) => console.log(e));
   }
 
