@@ -24,6 +24,22 @@ const routes: Routes = [
   {
     path: 'import-form',
     loadChildren: () => import('./import-form/import-form.module').then( m => m.ImportFormPageModule)
+  },
+  {
+    path: 'consulta-produto-form',
+    loadChildren: () => import('./pages/consulta-produto-form/consulta-produto-form.module').then( m => m.ConsultaProdutoFormPageModule)
+  },
+  {
+    path: 'etiqueta-preco-form',
+    loadChildren: () => import('./pages/etiqueta-preco-form/etiqueta-preco-form.module').then( m => m.EtiquetaPrecoFormPageModule)
+  },
+  {
+    path: 'config-form',
+    loadChildren: () => import('./pages/config-form/config-form.module').then( m => m.ConfigFormPageModule)
+  },
+  {
+    path: 'tabs-page',
+    loadChildren: () => import('./pages/tabs-page/tabs-page.module').then( m => m.TabsPagePageModule)
   }
 
 ];
